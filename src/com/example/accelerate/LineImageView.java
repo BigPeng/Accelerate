@@ -10,7 +10,6 @@ import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-
 import android.app.Activity;
 import android.app.Notification;
 import android.app.Service;
@@ -194,7 +193,7 @@ public class LineImageView extends Activity {
 		view.setBackgroundColor(Color.WHITE);
 	}
 
-	class ShakeWakeupService extends Service implements SensorEventListener {	
+	class ShakeWakeupService extends Service implements SensorEventListener {
 		public static final int SCREEN_OFF_RECEIVER_DELAY = 500;
 
 		private SensorManager mSensorManager = null;
@@ -216,7 +215,8 @@ public class LineImageView extends Activity {
 		 * Un-register this as a sensor event listener.
 		 */
 		private void unregisterListener() {
-			mSensorManager.unregisterListener(this);
+			if (mSensorManager != null)
+				mSensorManager.unregisterListener(this);
 		}
 
 		public BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -327,7 +327,6 @@ public class LineImageView extends Activity {
 			startForeground(Process.myPid(), new Notification());
 			registerListener();
 			mWakeLock.acquire();
-
 			return START_STICKY;
 		}
 	}
