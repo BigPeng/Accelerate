@@ -195,8 +195,7 @@ public class LineImageView extends Activity {
 
 	class ShakeWakeupService extends Service implements SensorEventListener {
 		public static final int SCREEN_OFF_RECEIVER_DELAY = 500;
-
-		private SensorManager mSensorManager = null;
+		
 		private WakeLock mWakeLock = null;
 		private float[] accValue;
 		private float[] gravity;
